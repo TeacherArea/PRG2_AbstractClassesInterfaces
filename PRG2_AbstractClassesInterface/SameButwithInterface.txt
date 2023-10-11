@@ -1,0 +1,64 @@
+﻿using System;
+
+interface IName
+{
+    string Name { get; set; }
+}
+
+interface ISpeak
+{
+    string Speak();
+}
+
+abstract class Animal : IName, ISpeak
+{
+    public string Name { get; set; }
+
+    public abstract string Speak();
+
+    public void Eat(string food)
+    {
+        Console.WriteLine($"{Name} äter {food}");
+    }
+}
+
+class Dog : Animal
+{
+    public Dog(string name)
+    {
+        Name = name;
+    }
+
+    public override string Speak()
+    {
+        return $"{Name} säger Woof!";
+    }
+}
+
+class Cat : Animal
+{
+    public Cat(string name)
+    {
+        Name = name;
+    }
+
+    public override string Speak()
+    {
+        return $"{Name} säger Meow!";
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Dog dog = new Dog("Hunden Pelle");
+        Cat cat = new Cat("Katten Stina");
+
+        dog.Eat("hundmat");
+        cat.Eat("kattmat");
+
+        Console.WriteLine(dog.Speak());
+        Console.WriteLine(cat.Speak());
+    }
+}
